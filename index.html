@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>www.portofolio/website.com</title>
+  <style>
+    /* Reset & Base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      scroll-behavior: smooth;
+    }
+
+    /* Animated marquee text */
+    .animated-text {
+      white-space: nowrap;
+      overflow: hidden;
+      border-bottom: 1px solid #fff;
+      padding: 10px 0;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .animated-text span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 10s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Menu Toggle */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 1100;
+      color: #fff;
+      background: rgba(0,0,0,0.6);
+      padding: 5px 10px;
+      border-radius: 8px;
+      user-select: none;
+    }
+
+    /* Side Menu */
+    nav.menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 180px;
+      background: rgba(255,255,255,0.97);
+      color: #000;
+      box-shadow: -3px 0 8px rgba(0,0,0,0.3);
+      padding: 20px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1050;
+      text-align: left;
+      font-weight: 600;
+    }
+    nav.menu.active {
+      transform: translateX(0);
+    }
+    nav.menu .close-btn {
+      font-size: 26px;
+      text-align: right;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    nav.menu a {
+      display: block;
+      margin: 14px 0;
+      text-decoration: none;
+      color: #000;
+      font-size: 18px;
+      transition: color 0.2s ease;
+    }
+    nav.menu a:hover {
+      color: #007bff;
+    }
+
+    /* Profil */
+    .circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 70px auto 20px;
+      border: 3px solid white;
+      box-shadow: 0 0 8px #fff;
+      display: block;
+    }
+
+    /* Buttons */
+    .button {
+      background: white;
+      color: black;
+      padding: 10px 20px;
+      margin: 12px auto;
+      width: 200px;
+      font-size: 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      transition: background-color 0.3s;
+      user-select: none;
+    }
+    .button:hover {
+      background-color: #ddd;
+    }
+
+    /* Welcome text */
+    .welcome {
+      font-size: 26px;
+      margin-top: 30px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* Scroll Down */
+    .scroll-down {
+      margin-top: 40px;
+      font-size: 20px;
+      animation: blink 1.5s infinite;
+      cursor: pointer;
+      user-select: none;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .arrow {
+      font-size: 30px;
+      animation: moveDown 1.5s infinite;
+      user-select: none;
+    }
+    @keyframes moveDown {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Galeri Gambar */
+    #galeri {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+      gap: 15px;
+      padding: 40px 20px;
+      max-width: 640px;
+      margin: 50px auto;
+      background-color: #111;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #222;
+    }
+    #galeri a {
+      border-radius: 8px;
+      overflow: hidden;
+      display: block;
+      box-shadow: 0 0 8px #000;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    #galeri a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px #007bff;
+    }
+    .gambar-box {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Info section */
+    #info {
+      max-width: 900px;
+      margin: 60px auto 80px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 30px;
+      text-align: left;
+      padding: 0 20px;
+    }
+    #info h2 {
+      font-size: 22px;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+    }
+    #info p, #info a {
+      font-size: 16px;
+      margin: 6px 0;
+      color: #eee;
+      text-decoration: none;
+      user-select: text;
+    }
+    #info a:hover {
+      text-decoration: underline;
+      color: #0af;
+    }
+
+    /* Programming Skills */
+    .skill p {
+      margin: 0 0 5px 0;
+      font-weight: 600;
+    }
+    .progress-bar {
+      background: #444;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 18px;
+      max-width: 260px;
+      box-shadow: inset 0 2px 5px rgba(255,255,255,0.2);
+    }
+    .progress {
+      height: 100%;
+      border-radius: 12px;
+    }
+    .progress.html {
+      width: 90%;
+      background: #e44d26;
+    }
+    .progress.css {
+      width: 85%;
+      background: #264de4;
+    }
+    .progress.php {
+      width: 75%;
+      background: #777bb3;
+    }
+    .progress.python {
+      width: 80%;
+      background: #306998;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: #777;
+      font-size: 14px;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="animated-text">
+    <span>WELCOME TO PORTOFOLIO :By.INDRA &nbsp;&nbsp;&nbsp;</span>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav class="menu" id="menu">
+    <div class="close-btn" onclick="toggleMenu()">×</div>
+    <a href="#home" onclick="toggleMenu()">Home</a>
+    <a href="#about" onclick="toggleMenu()">Tentang</a>
+    <a href="#skills" onclick="toggleMenu()">Skill</a>
+    <a href="#contact" onclick="toggleMenu()">Kontak</a>
+    <a href="#galeri" onclick="toggleMenu()">Galeri</a>
+    <a href="#info" onclick="toggleMenu()">Info</a>
+  </nav>
+
+  <!-- Gambar Profil -->
+  <img class="circle" src="profil.jpg" alt="Foto Profil" id="about">
+
+  <button class="button" onclick="window.open('https://instagram.com/ndra0216', '_blank')">USERNAME</button>
+  <button class="button" onclick="scrollToPortfolio()">PORTOFOLIO</button>
+
+  <div class="welcome" id="home">WELCOME TO WEBSITE</div>
+
+  <div class="scroll-down" onclick="scrollToGallery()">
+    GULIR KE BAWAH<br />
+    <div class="arrow">⬇</div>
+  </div>
+
+  <section id="galeri" aria-label="Galeri Gambar">
+    <a href="halaman1.html"><img class="gambar-box" src="gambar1.jpg" alt="Gambar 1" /></a>
+    <a href="halaman2.html"><img class="gambar-box" src="gambar2.jpg" alt="Gambar 2" /></a>
+    <a href="halaman3.html"><img class="gambar-box" src="gambar3.jpg" alt="Gambar 3" /></a>
+    <a href="halaman4.html"><img class="gambar-box" src="gambar4.jpg" alt="Gambar 4" /></a>
+    <a href="halaman5.html"><img class="gambar-box" src="gambar5.jpg" alt="Gambar 5" /></a>
+    <a href="halaman6.html"><img class="gambar-box" src="gambar6.jpg" alt="Gambar 6" /></a>
+  </section>
+
+  <section id="info" aria-label="Informasi Kontak dan Skill">
+    <div id="contact">
+      <h2>SOSIAL MEDIA</h2>
+      <p>📸 <a href="https://instagram.com/username" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+      <p>📘 <a href="https://facebook.com/username" target="_blank" rel="noopener noreferrer">Facebook</a></p>
+      <p>🐦 <a href="https://twitter.com/username" target="_blank" rel="noopener noreferrer">Twitter</a></p>
+      <p>💻 <a href="https://github.com/username" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+    </div>
+    <div>
+      <h2>KONTAK</h2>
+      <p>📞 <a href="tel:+6285651479659">Nomor HP</a></p>
+      <p>📱 <a href="https://wa.me/+6285651479650" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
+      <p>✉️ <a href="mailto:bangindrabang123@gmail.com">email@example.com</a></p>
+    </div>
+    <div class="skill">
+      <h2>KEAHLIAN PEMROGRAMAN</h2>
+      <p>HTML</p>
+      <div class="progress-bar"><div class="progress html"></div></div>
+      <p>CSS</p>
+      <div class="progress-bar"><div class="progress css"></div></div>
+      <p>PHP</p>
+      <div class="progress-bar"><div class="progress php"></div></div>
+      <p>Python</p>
+      <div class="progress-bar"><div class="progress python"></div></div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Portofolio Lengkap. Semua hak cipta dilindungi.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('active');
+    }
+
+    function scrollToPortfolio() {
+      document.getElementById('galeri').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function scrollToGallery() {
+      document.getElementById('galeri').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
